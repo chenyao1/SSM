@@ -426,7 +426,7 @@ public class CommandExecutor implements Runnable, Service {
         return null;
       }
       for (CommandInfo c : dbcmds) {
-        // if command alread in update cache or queue then skip
+        // if command already in update cache or queue then skip
         if (cmdsAll.containsKey(c.getCid())) {
           continue;
         }
@@ -512,7 +512,7 @@ public class CommandExecutor implements Runnable, Service {
     List<ActionInfo> actionInfos = new ArrayList<>();
     ActionInfo current;
     // Check if any files are in fileLock
-    for (int index = 0; index < commandDescriptor.size(); index++) {
+    for (int index = 0; index < commandDescriptor.actionSize(); index++) {
       String[] args = commandDescriptor.getActionArgs(index);
       if (args != null && args.length >= 1) {
         if (fileLock.containsKey(args[0])) {
@@ -522,7 +522,7 @@ public class CommandExecutor implements Runnable, Service {
       }
     }
     // Create actioninfos and add file to file locks
-    for (int index = 0; index < commandDescriptor.size(); index++) {
+    for (int index = 0; index < commandDescriptor.actionSize(); index++) {
       String[] args = commandDescriptor.getActionArgs(index);
       current = new ActionInfo(maxActionId, cid,
           commandDescriptor.getActionName(index),
@@ -571,7 +571,7 @@ public class CommandExecutor implements Runnable, Service {
         CommandState.PENDING, commandDescriptor.getCommandString(),
         submitTime, submitTime);
     maxCommandId ++;
-    for (int index = 0; index < commandDescriptor.size(); index++) {
+    for (int index = 0; index < commandDescriptor.actionSize(); index++) {
       if (!actionRegistry.checkAction(commandDescriptor.getActionName(index))) {
         LOG.error("Submit Command {} error! Action names are not correct!", cmdinfo);
         throw new IOException();
@@ -680,11 +680,6 @@ public class CommandExecutor implements Runnable, Service {
       LOG.error("Get Pending Commands From DB error!", e);
       throw new IOException(e);
     }
-  }
-
-  public Long[] getCommands(CommandState state) {
-    Set<Long> cmds = cmdsInState.get(state.getValue());
-    return cmds.toArray(new Long[cmds.size()]);
   }
 
   private ActionInfo createActionInfoFromAction(SmartAction smartAction,

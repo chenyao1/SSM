@@ -26,7 +26,6 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.smartdata.server.metastore.DBAdapter;
-import sun.rmi.runtime.Log;
 
 /**
  * Action is the minimum unit of execution. A command can contain more than one

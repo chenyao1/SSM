@@ -45,7 +45,7 @@ public class TestCommandExecutor extends TestEmptyMiniSmartCluster {
     generateTestCases();
     CommandDescriptor commandDescriptor = generateCommandDescriptor();
     List<ActionInfo> actionInfos = ssm.getCommandExecutor().createActionInfos(commandDescriptor, 0);
-    Assert.assertTrue(commandDescriptor.size() == actionInfos.size());
+    Assert.assertTrue(commandDescriptor.actionSize() == actionInfos.size());
   }
 
   @Test

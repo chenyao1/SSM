@@ -92,7 +92,7 @@ public class RuleManager implements Service {
     CommandDescriptor cd = tr.getCmdDescriptor();
     if (getCommandExecutor() != null) {
       String error = "";
-      for (int i = 0; i < cd.size(); i++) {
+      for (int i = 0; i < cd.actionSize(); i++) {
         if (!getCommandExecutor().isActionSupported(cd.getActionName(i))) {
           error += "Action '" + cd.getActionName(i) + "' not supported.\n";
         }

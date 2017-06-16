@@ -30,7 +30,7 @@ public class TestCommandDescriptor {
   public void testStringToDescriptor() throws Exception {
     String cmd = "someaction arg1 -arg2 /dir/foo ; cache /testFile; action3";
     CommandDescriptor des = CommandDescriptor.fromCommandString(cmd);
-    Assert.assertTrue(des.size() == 3);
+    Assert.assertTrue(des.actionSize() == 3);
     Assert.assertTrue(des.getActionName(2).equals("action3"));
     Assert.assertTrue(des.getActionArgs(2).length == 0);
   }
@@ -45,7 +45,7 @@ public class TestCommandDescriptor {
 
     String cmdString = des.getCommandString();
     CommandDescriptor transDes = new CommandDescriptor(cmdString);
-    Assert.assertTrue(des.size() == transDes.size());
+    Assert.assertTrue(des.actionSize() == transDes.actionSize());
     Assert.assertTrue(transDes.equals(des));
   }
 }

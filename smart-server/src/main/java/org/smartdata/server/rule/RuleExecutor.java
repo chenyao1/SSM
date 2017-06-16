@@ -315,7 +315,7 @@ public class RuleExecutor implements Runnable {
     }
     int nSubmitted = 0;
     CommandDescriptor template = tr.getCmdDescriptor();
-    int actions = template.size();
+    int actions = template.actionSize();
     for (String file : files) {
       if (!exited) {
         try {

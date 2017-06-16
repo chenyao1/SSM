@@ -23,7 +23,6 @@ import org.smartdata.common.CommandState;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CommandInfo {
   private long cid;
   private long rid;

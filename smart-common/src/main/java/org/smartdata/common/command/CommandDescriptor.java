@@ -78,7 +78,7 @@ public class CommandDescriptor {
     return actionArgs.get(index);
   }
 
-  public int size() {
+  public int actionSize() {
     return actionNames.size();
   }
 
@@ -92,18 +92,17 @@ public class CommandDescriptor {
    */
   public static CommandDescriptor fromCommandString(String cmdString)
       throws ParseException {
-    CommandDescriptor des = new CommandDescriptor(cmdString);
-    return des;
+    return new CommandDescriptor(cmdString);
   }
 
   public String toCommandString() {
-    if (size() == 0) {
+    if (actionSize() == 0) {
       return "";
     }
 
     String cmds = getActionName(0) + " "
         + formatActionArguments(getActionArgs(0));
-    for (int i = 1; i < size(); i++) {
+    for (int i = 1; i < actionSize(); i++) {
       cmds += " ; " + getActionName(i) + " "
           + formatActionArguments(getActionArgs(i));
     }
@@ -111,11 +110,11 @@ public class CommandDescriptor {
   }
 
   public boolean equals(CommandDescriptor des) {
-    if (des == null || this.size() != des.size()) {
+    if (des == null || this.actionSize() != des.actionSize()) {
       return false;
     }
 
-    for (int i = 0; i < this.size(); i++) {
+    for (int i = 0; i < this.actionSize(); i++) {
       if (!actionNames.get(i).equals(des.getActionName(i))
           || actionArgs.get(i).length != des.getActionArgs(i).length) {
         return false;
